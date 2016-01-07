@@ -16,6 +16,7 @@
 # Stdlib imports
 # ----------------------------------------------------------------------------
 from __future__ import absolute_import, unicode_literals
+import datetime
 
 
 # ============================================================================
@@ -33,6 +34,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.utils.text import slugify
 from django.utils import timezone
 from django.conf import settings
+from django.db.models import permalink
 
 # ============================================================================
 
@@ -68,12 +70,20 @@ class Category(TimeStampedModel):
 			- title
 			- slug
 	"""
-	name = models.CharField(_('Title'), max_length=50)
-	slug = models.SlugField(_('Slug'))
+	name = models.CharField(_('Title'), max_length=50, db_index=True)
+	slug = models.SlugField(_('Slug'), max_length=50, db_index=True)
 
 	def save(self, *args, **kwargs):
 		self.slug = slugify(self.name)
 		super(Category, self).save(*args, **kwargs)
+
+	@permalink
+	def get_absolute_url(self):
+		from django.core.urlresolvers import reverse
+		return reverse('category_details', args=[str(self.slug)])
+
+	def __str__(self):
+		return self.name
 
 	class Meta:
 		verbose_name 		=_('Category')
@@ -91,12 +101,12 @@ class Post(TimeStampedModel):
 	image = models.ImageField(_('Illustration'), upload_to='images')
 	image_alt = models.CharField(_('Image Alt'), max_length=100)	
 	public = models.BooleanField(default=False)
-		
-	
-	class Meta:
-		verbose_name 		=_('Post')
-		verbose_name_plural = _('Posts')
-		ordering = ['-created']
+
+
+	@permalink
+	def get_absolute_url(self):
+		from django.core.urlresolvers import reverse
+		return reverse('post_details', args=[self.slug])
 
 	def __str__(self):
 		return self.title
@@ -110,4 +120,9 @@ class Post(TimeStampedModel):
 		now = datetime.date.today()			
 		self.slug = slugify("%s %s"%(self.title, now))
 		super(Post, self).save(*args, **kwargs)
+
+	class Meta:
+		verbose_name 		=_('Post')
+		verbose_name_plural = _('Posts')
+		ordering = ['-created']
 
