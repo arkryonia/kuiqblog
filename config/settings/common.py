@@ -32,6 +32,7 @@ DJANGO_APPS = (
     # 'django.contrib.humanize',
 
     # Admin
+    'grappelli',
     'django.contrib.admin',
 )
 THIRD_PARTY_APPS = (
@@ -45,6 +46,7 @@ THIRD_PARTY_APPS = (
 LOCAL_APPS = (
     'kuiqblog.users',  # custom users app
     # Your stuff: custom apps go here
+    'weblog',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -113,7 +115,7 @@ DATABASES['default']['ATOMIC_REQUESTS'] = True
 TIME_ZONE = 'Africa/Porto-Novo'
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#language-code
-LANGUAGE_CODE = 'fr-fr'
+LANGUAGE_CODE = 'en-us'
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#site-id
 SITE_ID = 1

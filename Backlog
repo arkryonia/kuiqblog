@@ -1,0 +1,28 @@
+Depuis le backend ...
+
+	En tant qu’auteur, je veux soumettre des articles à l’éditeur pour validation.
+
+	En tant que, je veux consulter la liste de mes articles afin d’en modifier un au besoin.
+
+	En tant qu’éditeur, je veux être d’abord comme un auteur.
+
+	En tant qu’éditeur, je veux valider les articles soumis par les auteurs afin de les publier si nécessaire.
+
+	En tant qu’éditeur, je veux gérer les auteurs.
+
+
+Depuis le frontend …
+
+	En tant que visiteur, je veux consulter et commenter un article.
+
+	En tant que visiteur, je veux m’inscrire au flux RSS.
+
+	En tant que visiteur, je veux m’inscrire au newsletter.
+
+	En tant que visiteur, je veux partager les articles afin de les lire par d’autres visiteurs potentiels.
+
+	En tant que visiteur, je veux contacter les administrateurs du blog.
+
+
+
+
