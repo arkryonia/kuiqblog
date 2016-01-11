@@ -45,6 +45,7 @@ from django.db.models import permalink
 # Third-party app imports
 # ----------------------------------------------------------------------------
 
+from ckeditor.fields import RichTextField
 
 
 # ============================================================================
@@ -61,7 +62,6 @@ from kuiqblog.users.models import User
 
 
 # ============================================================================
-
 
 @python_2_unicode_compatible
 class Category(TimeStampedModel):
@@ -97,11 +97,10 @@ class Post(TimeStampedModel):
 	category = models.ForeignKey(Category)
 	title = models.CharField(_('Title'), max_length=100)
 	slug = models.SlugField(_('Slug'), unique=True)	
-	content = models.TextField(_('Content'))
+	content = RichTextField(_('Content'))
 	image = models.ImageField(_('Illustration'), upload_to='images')
 	image_alt = models.CharField(_('Image Alt'), max_length=100)	
-	public = models.BooleanField(default=False)
-
+	is_public = models.BooleanField(default=False)
 
 	@permalink
 	def get_absolute_url(self):
