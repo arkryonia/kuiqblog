@@ -64,10 +64,13 @@ from .forms import PostForm, CategoryForm
 
 # ============================================================================
 
+def home(request):
+	return render(request, 'weblog/base.html')
+
 
 # Categry Views >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-class CategoryCreateView(
+class CategoryBackCreateView(
 			LoginRequiredMixin, 
 			PermissionRequiredMixin,
 			CreateView):
@@ -86,7 +89,7 @@ class CategoryCreateView(
 		return super(CategoryCreateView, self).dispatch(*args, **kwargs)
 
 
-class CategoryListView(
+class CategoryBackListView(
 			LoginRequiredMixin, 
 			PermissionRequiredMixin,
 			ListView):
@@ -101,7 +104,7 @@ class CategoryListView(
 
 	
 
-class CategoryDetailView(
+class CategoryBackDetailView(
 			LoginRequiredMixin, 
 			PermissionRequiredMixin,
 			DetailView):
@@ -114,7 +117,7 @@ class CategoryDetailView(
 
 	
 
-class CategoryUpdateView(
+class CategoryBackUpdateView(
 			LoginRequiredMixin, 
 			PermissionRequiredMixin,
 			UpdateView):
@@ -175,7 +178,7 @@ class PostBackListView(
 		queryset = user.post_set.all()
 		return queryset
 
-class PostDetailView(
+class PostBackDetailView(
 			LoginRequiredMixin, 
 			PermissionRequiredMixin,
 			DetailView):

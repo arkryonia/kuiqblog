@@ -64,6 +64,20 @@ from kuiqblog.users.models import User
 # ============================================================================
 
 @python_2_unicode_compatible
+class Author(User):
+	avatar = models.ImageField(_('Illustration'), upload_to='images', blank=True)
+	class Meta:
+		verbose_name 		=_('Author')
+		verbose_name_plural = _('Authors')
+
+@python_2_unicode_compatible
+class Editor(Author):
+	class Meta:
+		verbose_name 		=_('Editor')
+		verbose_name_plural = _('Editors')
+
+
+@python_2_unicode_compatible
 class Category(TimeStampedModel):
 	"""
 		Class Category is a TimeStampedModel with the following attributes :
@@ -98,8 +112,8 @@ class Post(TimeStampedModel):
 	title = models.CharField(_('Title'), max_length=100)
 	slug = models.SlugField(_('Slug'), unique=True)	
 	content = RichTextField(_('Content'))
-	image = models.ImageField(_('Illustration'), upload_to='images')
-	image_alt = models.CharField(_('Image Alt'), max_length=100)	
+	image = models.ImageField(_('Illustration'), upload_to='images', blank=True)
+	image_alt = models.CharField(_('Image Alt'), max_length=100, blank=True)	
 	is_public = models.BooleanField(default=False)
 
 	@permalink

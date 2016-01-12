@@ -62,7 +62,7 @@ class CategoryForm(forms.ModelForm):
 
 
 class PostForm(forms.ModelForm):
-	category = forms.ModelFormChoiceField(queryset=Category.objects.all())
+	category = forms.ModelChoiceField(queryset=Category.objects.all())
 	class Meta:
 		model = Post
 		fields = ['title', 'category', 'image', 'image_alt', 'is_public', 'content']
