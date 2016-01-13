@@ -1,331 +1,149 @@
 {% load staticfiles i18n %}
-{% now 'Y' as year %}
+{% now 'Y' as current_year %}
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Kuiqblog | Dashboard</title>
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <!-- Bootstrap 3.3.5 -->
-    <link rel="stylesheet" href="{% static "weblog/libs/AdminLTE/bootstrap/css/bootstrap.min.css" %}">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="{% static "weblog/libs/AdminLTE/dist/css/AdminLTE.min.css" %}">
-    <!-- AdminLTE Skins. Choose a skin from the css/skins
-         folder instead of downloading all of them to reduce the load. -->
-    <link rel="stylesheet" href="{% static "weblog/libs/AdminLTE/dist/css/skins/_all-skins.min.css" %}">
-    <!-- iCheck -->
-    <link rel="stylesheet" href="{% static "weblog/libs/AdminLTE/plugins/iCheck/flat/blue.css" %}">
-    <!-- Morris chart -->
-    <link rel="stylesheet" href="{% static "weblog/libs/AdminLTE/plugins/morris/morris.css" %}">
-    <!-- jvectormap -->
-    <link rel="stylesheet" href="{% static "weblog/libs/AdminLTE/plugins/jvectormap/jquery-jvectormap-1.2.2.css" %}">
-    <!-- Date Picker -->
-    <link rel="stylesheet" href="{% static "weblog/libs/AdminLTE/plugins/datepicker/datepicker3.css" %}">
-    <!-- Daterange picker -->
-    <link rel="stylesheet" href="{% static "weblog/libs/AdminLTE/plugins/daterangepicker/daterangepicker-bs3.css" %}">
-    <!-- bootstrap wysihtml5 - text editor -->
-    <link rel="stylesheet" href="{% static "weblog/libs/AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" %}">
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="the site description here please">
+	<meta name="author" content="@drxos">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
-  <body class="hold-transition skin-blue sidebar-mini">
-    <div class="wrapper">
 
-      <!-- Main Header -->
-      <header class="main-header">
+	<title>Document</title>
 
-        <!-- Logo -->
-        <a href="index2.html" class="logo">
-          <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><b>K</b>B</span>
-          <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>Kuiq</b>Blog</span>
-        </a>
+	<!--CSS FILE-->
+	<link rel="stylesheet" href="{% static "weblog/libs/bootstrap/dist/css/bootstrap.min.css" %}">
+	<link rel="stylesheet" href="{% static "weblog/libs/bootstrap/dist/css/bootstrap-theme.min.css" %}">
+	<link rel="stylesheet" href="{% static "weblog/css/blog.css" %}">
+</head>
+<body>
+	<header class="navbar navbar-default navbar-fixed-top bs-docs-nav" role="banner">
+		<div class="container">
+			<div class="navbar-header">
+				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a href="#" class="navbar-brand">Kuiqblog</a>
+			</div>
+			<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+				<form class="navbar-form navbar-right" role="search">
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="Search">
+					</div>
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</form>
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Home</a></li>
+					<li><a href="#">Contact</a></li>
+					<li><a href="#">About</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
 
-        <!-- Header Navbar -->
-        <nav class="navbar navbar-static-top" role="navigation">
-          <!-- Sidebar toggle button-->
-          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-            <span class="sr-only">Toggle navigation</span>
-          </a>
-          <!-- Navbar Right Menu -->
-          <div class="navbar-custom-menu">
-            <ul class="nav navbar-nav">
-              <!-- Messages: style can be found in dropdown.less-->
-              <li class="dropdown messages-menu">
-                <!-- Menu toggle button -->                
-                <ul class="dropdown-menu">                  
-                    <!-- inner menu: contains the messages -->
-                    <ul class="menu">
-                      <li><!-- start message -->
-                        <a href="#">
-                          <div class="pull-left">
-                            <!-- User Image -->
-                            <img src="{% static "weblog/libs/AdminLTE/dist/img/user2-160x160.jpg" %}" class="img-circle" alt="User Image">
-                          </div>
-                          <!-- Message title and timestamp -->
-                          <h4>
-                            Support Team
-                            <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                          </h4>
-                          <!-- The message -->
-                          <p>Why not buy a new awesome theme?</p>
-                        </a>
-                      </li><!-- end message -->
-                    </ul><!-- /.menu -->
-                  </li>
-                  <li class="footer"><a href="#">See All Messages</a></li>
-                </ul>
-              </li><!-- /.messages-menu -->
+	<div id="body">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8">
+					<h1>Last Posts</h1>		
 
-              <!-- Notifications Menu -->
-              <li class="dropdown notifications-menu">
-                <!-- Menu toggle button -->
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <i class="fa fa-bell-o"></i>
-                  <span class="label label-warning">10</span>
-                </a>
-                <ul class="dropdown-menu">
-                  <li class="header">You have 10 notifications</li>
-                  <li>
-                    <!-- Inner Menu: contains the notifications -->
-                    <ul class="menu">
-                      <li><!-- start notification -->
-                        <a href="#">
-                          <i class="fa fa-users text-aqua"></i> 5 new members joined today
-                        </a>
-                      </li><!-- end notification -->
-                    </ul>
-                  </li>
-                  <li class="footer"><a href="#">View all</a></li>
-                </ul>
-              </li>
-              
-              <!-- User Account Menu -->
-              <li class="dropdown user user-menu">
-                <!-- Menu Toggle Button -->
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <!-- The user image in the navbar-->
-                  <img src="{% static "weblog/libs/AdminLTE/dist/img/user2-160x160.jpg" %}" class="user-image" alt="User Image">
-                  <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                  <span class="hidden-xs">Alexander Pierce</span>
-                </a>
-                <ul class="dropdown-menu">
-                  <!-- The user image in the menu -->
-                  <li class="user-header">
-                    <img src="{% static "weblog/libs/AdminLTE/dist/img/user2-160x160.jpg" %}" class="img-circle" alt="User Image">
-                    <p>
-                      Hodonou SOUNTON - M.Sc.I.T
-                      <small>CEO & Reysh Co-funder</small>
-                    </p>
-                  </li>                  
-                  <!-- Menu Footer-->
-                  <li class="user-footer">
-                    <div class="pull-left">
-                      <a href="#" class="btn btn-default btn-flat">Profile</a>
-                    </div>
-                    <div class="pull-right">
-                      <a href="#" class="btn btn-default btn-flat">Sign out</a>
-                    </div>
-                  </li>
-                </ul>
-              </li>
-              <!-- Control Sidebar Toggle Button -->              
-            </ul>
-          </div>
-        </nav>
-      </header>
-      <!-- Left side column. contains the logo and sidebar -->
-      <aside class="main-sidebar">
+					<article>
+					    <h2><a href="singlepost.html">Aries Sun Sign March 21 - April 19</a></h2>
+					 
+					    <div class="row">
+					        <div class="group1 col-sm-6 col-md-6">
+					            <span class="glyphicon glyphicon-folder-open"></span>  <a href="#">Signs</a>
+					                     <span class="glyphicon glyphicon-bookmark"></span> <a href="#">Aries</a>,
+					                <a href="#">Fire</a>, <a href="#">Mars</a>
+					        </div>
+					        <div class="group2 col-sm-6 col-md-6">
+					                <span class="glyphicon glyphicon-pencil"></span> <a href="singlepost.html#comments">20 Comments</a>
+					                  <span class="glyphicon glyphicon-time"></span> August 24, 2013 9:00 PM
+					        </div>
+					    </div>
+					 
+					    <hr>
+					 
+					    <img src="http://placehold.it/900x300" class="img-responsive">
+					 
+					    <br />
+					 
+					    <p class="lead">Aries is the first sign of the zodiac, and that's pretty much how those born under this sign see themselves: first. Aries are the leaders of the pack, first in line to get things going. Whether or not everything gets done is another question altogether, for an Aries prefers to initiate rather than to complete. Do you have a project needing a kick-start? Call an Aries, by all means. The leadership displayed by Aries is most impressive, so don't be surprised if they can rally the troops against seemingly insurmountable odds.</p> 
+					    
+					 
+					    <p class="text-right">
+					        <a href="singlepost.html" class="text-right">
+					            continue reading...
+					        </a>
+					    </p>
+					 
+					    <hr>
+					</article>
 
-        <!-- sidebar: style can be found in sidebar.less -->
-        <section class="sidebar">
+					<!-- pager -->
+		            <ul class="pager">
+		                <li class="previous">
+		                    <a href="#">← Older</a>
+		                </li>
+		                <li class="next">
+		                    <a href="#">Newer →</a>
+		                </li>
+		            </ul>
 
-          <!-- Sidebar user panel (optional) -->
-          <div class="user-panel">
-            <div class="pull-left image">
-              <img src="{% static "weblog/libs/AdminLTE/dist/img/user2-160x160.jpg" %}" class="img-circle" alt="User Image">
-            </div>
-            <div class="pull-left info">
-              <p>Hodonou SOUNTON</p>
-              <!-- Status -->
-              <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-            </div>
-          </div>
 
-          <!-- search form (Optional) -->
-          <!--form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
-              <input type="text" name="q" class="form-control" placeholder="Search...">
-              <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
-              </span>
-            </div>
-          </form-->
-          <!-- /.search form -->
+				</div>
+				<div class="col-md-4">					
+					<div class="well text-center">
+				        <p class="lead">
+				            Don't want to miss updates? Please click the below button!
+				        </p>
+				        <button class="btn btn-warning btn-lg"><span class="social social-rss"></span> Subscribe to my feed</button>
+				    </div>
 
-          <!-- Sidebar Menu -->
-          <ul class="sidebar-menu">
-            <li class="header">HEADER</li>
-            <!-- Optionally, you can add icons to the links -->            
-            <li class="treeview">
-              <a href="#"><i class="fa fa-link"></i> <span>Posts</span> <i class="fa fa-angle-left pull-right"></i></a>
-              <ul class="treeview-menu">
-                <li><a href="#">List</a></li>
-                <li><a href="#">Add</a></li>
-              </ul>
-            </li>
-            <li class="treeview">
-              <a href="#"><i class="fa fa-link"></i> <span>Category</span> <i class="fa fa-angle-left pull-right"></i></a>
-              <ul class="treeview-menu">
-                <li><a href="#">List</a></li>
-                <li><a href="#">Add</a></li>
-              </ul>
-            </li>
-            <li class="treeview">
-              <a href="#"><i class="fa fa-link"></i> <span>Authors</span> <i class="fa fa-angle-left pull-right"></i></a>
-              <ul class="treeview-menu">
-                <li><a href="#">List</a></li>
-                <li><a href="#">Add</a></li>
-              </ul>
-            </li>
-          </ul><!-- /.sidebar-menu -->
-        </section>
-        <!-- /.sidebar -->
-      </aside>
+				    <div class="panel panel-default">
+					    <div class="panel-heading">
+					        <h4>Categories</h4>
+					    </div>
+					    <ul class="list-group">
+					        <li class="list-group-item"><a href="#">Signs</a></li>
+					        <li class="list-group-item"><a href="#">Elements</a></li>
+					        <li class="list-group-item"><a href="#">Planets</a></li>
+					        <li class="list-group-item"><a href="#">Cusps</a></li>
+					        <li class="list-group-item"><a href="#">Compatibility</a></li>
+					    </ul>
+					</div>
 
-      <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-          <h1>
-            Welcome to Kuiqblog control panel
-            <!--small>Optional description</small-->
-          </h1>          
-        </section>
+				    <div class="panel panel-default">
+					    <div class="panel-heading">
+				        <h4>Latest Posts</h4>
+				    </div>
+				    <ul class="list-group">
+				        <li class="list-group-item"><a href="singlepost.html">1. Aries Sun Sign March 21 - April 19</a></li>
+				        <li class="list-group-item"><a href="singlepost.html">2. Taurus Sun Sign April 20 - May 20</a></li>
+				        <li class="list-group-item"><a href="singlepost.html">3. Gemini Sun Sign May 21 - June 21</a></li>
+				        <li class="list-group-item"><a href="singlepost.html">4. Cancer Sun Sign June 22 - July 22</a></li>
+				        <li class="list-group-item"><a href="singlepost.html">5. Leo Sun Sign July 23 - August 22 </a></li>
+				    </ul>
+									</div>
+								</div>				
+							</div>
+						</div>
+					</div>
 
-        <!-- Main content -->
-        <section class="content">
+	<footer>
+		<div class="container">
+			<div class="container">
+		        <hr />
+		        <p class="text-center">2015 - {{ current_year }} &copy; Raysh Tech. All rights reserved.</p>
+		    </div>
+			
+		</div>
+	</footer>
 
-          <!-- Your Page Content Here -->
-          <div class="box box-solid box-success">
-            <div class="box-header with-border">
-              <h3 class="box-title">Categories</h3>
-              <div class="box-tools pull-right">
-                <!-- Buttons, labels, and many other things can be placed here! -->
-                <!-- Here is a label for example -->
-                <button class="btn btn-default" data-toggle="control-sidebar">Add</button>
-                <button class="btn btn-default" data-toggle="control-sidebar">List</button>
-              </div><!-- /.box-tools -->
-            </div><!-- /.box-header -->
-            <div class="box-body">
-              The body of the box
-            </div><!-- /.box-body -->
-            <div class="box-footer">
-              The footer of the box
-            </div><!-- box-footer -->
-          </div><!-- /.box -->
-
-        </section><!-- /.content -->
-      </div><!-- /.content-wrapper -->
-
-      <!-- Main Footer -->
-      <footer class="main-footer">
-        <!-- To the right -->
-        <div class="pull-right hidden-xs">
-         <strong><a href="https://github.com/reyshinc/kuiqblog">Kuiqblog</a></strong> , a simple blog for simple usage.
-        </div>
-        <!-- Default to the left -->
-        <strong>Copyright &copy; 2015 - {{ year }} <a href="#">Reysh Inc</a>.</strong> All rights reserved.
-      </footer>
-
-      <!-- Control Sidebar -->
-      <aside class="control-sidebar control-sidebar-dark">
-        <!-- Create the tabs -->
-        <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-          <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-          <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-        </ul>
-        <!-- Tab panes -->
-        <div class="tab-content">
-          <!-- Home tab content -->
-          <div class="tab-pane active" id="control-sidebar-home-tab">
-            <h3 class="control-sidebar-heading">Recent Activity</h3>
-            <ul class="control-sidebar-menu">
-              <li>
-                <a href="javascript::;">
-                  <i class="menu-icon fa fa-birthday-cake bg-red"></i>
-                  <div class="menu-info">
-                    <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
-                    <p>Will be 23 on April 24th</p>
-                  </div>
-                </a>
-              </li>
-            </ul><!-- /.control-sidebar-menu -->
-
-            <h3 class="control-sidebar-heading">Tasks Progress</h3>
-            <ul class="control-sidebar-menu">
-              <li>
-                <a href="javascript::;">
-                  <h4 class="control-sidebar-subheading">
-                    Custom Template Design
-                    <span class="label label-danger pull-right">70%</span>
-                  </h4>
-                  <div class="progress progress-xxs">
-                    <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
-                  </div>
-                </a>
-              </li>
-            </ul><!-- /.control-sidebar-menu -->
-
-          </div><!-- /.tab-pane -->
-          <!-- Stats tab content -->
-          <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div><!-- /.tab-pane -->
-          <!-- Settings tab content -->
-          <div class="tab-pane" id="control-sidebar-settings-tab">
-            <form method="post">
-              <h3 class="control-sidebar-heading">General Settings</h3>
-              <div class="form-group">
-                <label class="control-sidebar-subheading">
-                  Report panel usage
-                  <input type="checkbox" class="pull-right" checked>
-                </label>
-                <p>
-                  Some information about this general settings option
-                </p>
-              </div><!-- /.form-group -->
-            </form>
-          </div><!-- /.tab-pane -->
-        </div>
-      </aside><!-- /.control-sidebar -->
-      <!-- Add the sidebar's background. This div must be placed
-           immediately after the control sidebar -->
-      <div class="control-sidebar-bg"></div>
-    </div><!-- ./wrapper -->
-
-    <!-- REQUIRED JS SCRIPTS -->
-
-    <!-- jQuery 2.1.4 -->
-    <script src="{% static "weblog/libs/AdminLTE/plugins/jQuery/jQuery-2.1.4.min.js" %}"></script>
-    <!-- Bootstrap 3.3.5 -->
-    <script src="{% static "weblog/libs/AdminLTE/bootstrap/js/bootstrap.min.js" %}"></script>
-    <!-- AdminLTE App -->
-    <script src="{% static "weblog/libs/AdminLTE/dist/js/app.min.js" %}"></script>
-
-    <!-- Optionally, you can add Slimscroll and FastClick plugins.
-         Both of these plugins are recommended to enhance the
-         user experience. Slimscroll is required when using the
-         fixed layout. -->
-  </body>
+	<script src="{% static "weblog/libs/jquery/dist/jquery.min.js" %}"></script>
+	<script src="{% static "weblog/libs/bootstrap/dist/js/bootstrap.min.js" %}"></script>
+</body>
 </html>
