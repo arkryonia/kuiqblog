@@ -65,7 +65,7 @@ from .forms import PostForm, CategoryForm
 # ============================================================================
 
 def home(request):
-	return render(request, 'weblog/base.html')
+	return render(request, 'weblog/frontend/about.html')
 
 
 # Categry Views >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>

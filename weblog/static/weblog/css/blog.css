@@ -13,3 +13,9 @@ p {
 footer {
   margin: 10px 0;
 }
+.photo {
+  margin-bottom: 10px;
+}
+.social-buttons button {
+  margin-top: 5px;
+}
