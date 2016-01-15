@@ -6,7 +6,7 @@
 
 {% for post in posts %}
 	<article>
-		<h2><a href="{% url "weblog:detail-post" post.id %}">{{ post.title }}</a></h2>
+		<h2><a href="{% url "weblog:detail-post" post.slug %}">{{ post.title }}</a></h2>
 
 		<div class="row">
 			<div class="group1 col-sm-6 col-md-6">				
@@ -20,8 +20,8 @@
 		
 		
 		 {% if post.image %}
-		 	{% thumbnail post.image 780x300 crop as thumb %}	
-		 	<img src="{{ thumb.url }}" width="{{ thumb.width }}" height="{{ thumb.height }}" class="img-responsive thumbnail" />		 	
+		 	{% thumbnail post.image 780x200 crop as thumb %}	
+		 	<img src="{{ thumb.url }}" width="{{ thumb.width }}" height="{{ thumb.height }}" class="img-responsive thumbnail" alt="{{ post.image_alt }}" />		 	
 		 {% endif %}
 				
 		
@@ -29,7 +29,7 @@
 		{% autoescape off %}	
 			<div class="post">
 				<p class="lead">
-					{{ post.content|truncatechars:250 }}
+					{{ post.content|truncatechars:350 }}
 				</p>
 			</div> 
 		{% endautoescape %}	

@@ -66,7 +66,7 @@ urlpatterns = [
 
 
 	url(
-		regex=r"^posts/(?P<pk>\d+)/$",
+		regex=r"^posts/(?P<slug>[\w-]+)/$",
 		view=views.PostDetailView.as_view(),
 		name="detail-post"
 	),

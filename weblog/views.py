@@ -36,6 +36,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect
 from django.utils.text import slugify
+from django.shortcuts import get_object_or_404
 
 
 # ============================================================================
@@ -88,3 +89,5 @@ class PostDetailView(DetailView):
 	model = Post
 	template_name = 'weblog/frontend/detail.html'
 	context_object_name = 'post'
+	query_pk_and_slug = True
+	

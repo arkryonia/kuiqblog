@@ -1,0 +1,43 @@
+{% extends "weblog/base.html" %}
+{% load staticfiles thumbnail %}
+
+{% block main-content %}
+	<h1>{{ post.title }}</h1>
+
+	<article>
+		
+		<div class="row">
+			<!--div class="group1 col-sm-6 col-md-6">				
+				<span class="glyphicon glyphicon-tags"> </span> {{ post.tags }}
+			</div>
+			<div class="group2 col-sm-6 col-md-6">				
+				<span class="glyphicon glyphicon-time"></span> <span class="text-info">{{ post.created }}</span>
+			</div-->
+
+		<hr>		
+		
+		
+		 {% if post.image %}
+		 	{% thumbnail post.image 780x300 crop as thumb %}	
+		 	<img src="{{ thumb.url }}" width="{{ thumb.width }}" height="{{ thumb.height }}" class="img-responsive thumbnail" alt="{{ post.image_alt }}" />		 	
+		 {% endif %}
+				
+		
+		<br />
+		{% autoescape off %}	
+			<div class="post">			
+				<p class="text-justify">
+					{{ post.content }}
+				</p>
+
+				<p class="text-right">
+					{{ post.created }} <br>
+					&mdash; {{ post.author.username }}					
+				</p>				
+			</div> 
+		{% endautoescape %}	
+		
+		<hr>
+	</article>
+
+{% endblock main-content %}
