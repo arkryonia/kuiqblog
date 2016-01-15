@@ -1,48 +1,53 @@
 {% extends "weblog/base.html" %}
+{% load staticfiles thumbnail %}
 
 {% block main-content %}
-<h1>Last Posts</h1>		
+<h1>Posts List</h1>	
 
-<article>
-	<h2><a href="singlepost.html">Aries Sun Sign March 21 - April 19</a></h2>
-	
-	<div class="row">
-		<div class="group1 col-sm-6 col-md-6">
-			<span class="glyphicon glyphicon-folder-open"></span>  <a href="#">Signs</a>
-			<span class="glyphicon glyphicon-bookmark"></span> <a href="#">Aries</a>,
-			<a href="#">Fire</a>, <a href="#">Mars</a>
-		</div>
-		<div class="group2 col-sm-6 col-md-6">
-			<span class="glyphicon glyphicon-pencil"></span> <a href="singlepost.html#comments">20 Comments</a>
-			<span class="glyphicon glyphicon-time"></span> August 24, 2013 9:00 PM
-		</div>
-	</div>
-	
-	<hr>
-	
-	<img src="http://placehold.it/900x300" class="img-responsive">
-	
-	<br />
-	
-	<p class="lead">Aries is the first sign of the zodiac, and that's pretty much how those born under this sign see themselves: first. Aries are the leaders of the pack, first in line to get things going. Whether or not everything gets done is another question altogether, for an Aries prefers to initiate rather than to complete. Do you have a project needing a kick-start? Call an Aries, by all means. The leadership displayed by Aries is most impressive, so don't be surprised if they can rally the troops against seemingly insurmountable odds.</p> 
-	
-	
-	<p class="text-right">
-		<a href="singlepost.html" class="text-right">
-			continue reading...
-		</a>
-	</p>
-	
-	<hr>
-</article>
+{% for post in posts %}
+	<article>
+		<h2><a href="{% url "weblog:detail-post" post.id %}">{{ post.title }}</a></h2>
+
+		<div class="row">
+			<div class="group1 col-sm-6 col-md-6">				
+				<span class="glyphicon glyphicon-tags"> </span> {{ post.tags }}
+			</div>
+			<div class="group2 col-sm-6 col-md-6">				
+				<span class="glyphicon glyphicon-time"></span> <span class="text-info">{{ post.created }}</span>
+			</div>
+
+		<hr>		
+		
+		
+		 {% if post.image %}
+		 	{% thumbnail post.image 780x300 crop as thumb %}	
+		 	<img src="{{ thumb.url }}" width="{{ thumb.width }}" height="{{ thumb.height }}" class="img-responsive thumbnail" />		 	
+		 {% endif %}
+				
+		
+		<br />
+		{% autoescape off %}	
+			<div class="post">
+				<p class="lead">
+					{{ post.content|truncatechars:250 }}
+				</p>
+			</div> 
+		{% endautoescape %}	
+
+
+		<p class="text-right">
+			<a href="singlepost.html" class="text-right">
+				continue reading...
+			</a>
+		</p>
+
+		<hr>
+	</article>
+{% empty %}	
+	<p class="warning">No posts available:</p>
+{% endfor %}
 
 <!-- pager -->
-<ul class="pager">
-	<li class="previous">
-		<a href="#">← Older</a>
-	</li>
-	<li class="next">
-		<a href="#">Newer →</a>
-	</li>
-</ul>
+
+
 {% endblock main-content %}

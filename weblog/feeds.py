@@ -2,11 +2,11 @@
 
 #=============================================================================
 # 
-# File : urls.py                                                                         
+# File : feeds.py                                                                         
 # Author : Hodonou SOUNTON                            
 # Team : drxos, kiah, fall, geolov, sadj
 # Site : http://reysh.com                                                       
-# Date : 2016-01-11T17:52:42+01:00
+# Date : 2016-01-14T23:18:12+01:00
 # Licence : © Reysh Tech, All Right Reserved.
 #                                                                            
 #=============================================================================
@@ -26,8 +26,10 @@ from __future__ import absolute_import, unicode_literals
 
 # Core Django imports
 # ----------------------------------------------------------------------------
-from django.conf.urls import url
 
+from django.contrib.syndication.views import Feed
+from django.utils.translation import ugettext as _
+from django.core.urlresolvers import reverse
 
 
 # ============================================================================
@@ -50,30 +52,23 @@ from django.conf.urls import url
 # Imports from our apps
 # ----------------------------------------------------------------------------
 
-from . import views, feeds
-
+from .models import Post
 
 # ============================================================================
 
 
-urlpatterns = [
+class LastestPost(Feed):
+	title = _('DrXos Blog Lastest Post')
+	link = "/"
 
-	url(
-		regex=r"^$",
-		view=views.PostListView.as_view(),
-		name="list-posts"
-	),
+	def items(self):
+		return Post.objects.all()
 
+	def item_title(self, item):
+		return item.title
 
-	url(
-		regex=r"^posts/(?P<pk>\d+)/$",
-		view=views.PostDetailView.as_view(),
-		name="detail-post"
-	),
-	
-	url(
-		regex=r"^posts/feeds/$",
-		view=feeds.LastestPost(),
-		name="feeds"
-	),
-]
+	def item_description(self, item):
+		return item.btext
+
+	def item_link(self, item):
+		return reverse('weblog:detail-post', args=[item.slug])

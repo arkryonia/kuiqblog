@@ -41,6 +41,7 @@ THIRD_PARTY_APPS = (
     'allauth.account',  # registration
     'allauth.socialaccount',  # registration
     'ckeditor',
+    'easy_thumbnails',
 )
 
 # Apps specific for this project go here.
@@ -161,6 +162,7 @@ TEMPLATES = [
                 'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
                 # Your stuff: custom template context processors go here
+                'weblog.context_processors.weblog',
             ],
         },
     },

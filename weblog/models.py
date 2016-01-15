@@ -112,6 +112,7 @@ class Post(TimeStampedModel):
 	title = models.CharField(_('Title'), max_length=100)
 	slug = models.SlugField(_('Slug'), unique=True)	
 	content = RichTextField(_('Content'))
+	tags = models.CharField(max_length=100, default='kuiqblog, ')
 	image = models.ImageField(_('Illustration'), upload_to='images', blank=True)
 	image_alt = models.CharField(_('Image Alt'), max_length=100, blank=True)	
 	is_public = models.BooleanField(default=False)
