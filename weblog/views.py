@@ -82,6 +82,23 @@ class PostListView(ListView):
 	queryset = Post.objects.filter(is_public=True).order_by('-created')
 
 
+class PostListbyCategoryView(ListView):
+	"""
+		This class aims to list categories.
+	"""
+	model = Post
+	paginate_by = 3
+	template_name = 'weblog/frontend/posts.html'
+	context_object_name = 'posts'	
+	# queryset = Post.objects.filter(slug=self.kwargs['slug']).order_by('-created')
+
+	def get_queryset(self):
+		category = Category.objects.get(slug=self.kwargs['slug'])
+		return Post.objects.filter(category=category).order_by('-created')
+
+
+
+
 class PostDetailView(DetailView):
 	"""
 		This class aims to list categories.

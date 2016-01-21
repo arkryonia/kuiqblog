@@ -64,6 +64,12 @@ urlpatterns = [
 		name="list-posts"
 	),
 
+	url(
+		regex=r"^(?P<slug>[\w-]+)/$",
+		view=views.PostListbyCategoryView.as_view(),
+		name="list-category-posts"
+	),
+
 
 	url(
 		regex=r"^posts/(?P<slug>[\w-]+)/$",
